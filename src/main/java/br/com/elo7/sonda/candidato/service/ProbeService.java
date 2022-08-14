@@ -27,7 +27,7 @@ public class ProbeService {
 	private Mapper mapper;
 	
 	public List<Probe> landProbes(InputDTO input) {
-		Planet planet = concertPlanet(input);
+		Planet planet = mapper.InputDTOToPlanet(input);
 		planets.save(planet);
 		
 		List<Probe> convertedProbes = convertAndMoveProbes(input, planet);
@@ -129,10 +129,5 @@ public class ProbeService {
 	
 
 	
-	private Planet concertPlanet(InputDTO input) {
-		Planet planet = new Planet();
-		planet.setHeight(input.getHeight());
-		planet.setWidth(input.getWidth());
-		return planet;
-	}
+
 }
