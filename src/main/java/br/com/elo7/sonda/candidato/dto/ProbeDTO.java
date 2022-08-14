@@ -19,7 +19,5 @@ public class ProbeDTO {
 	public String getCommands() {
 		return commands;
 	}
-	public void setCommands(String commands) {
-		this.commands = commands;
-	}
+
 }
