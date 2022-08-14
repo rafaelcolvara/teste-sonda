@@ -13,5 +13,16 @@ public class InputDTO {
 		this.probes = probes;
 	}
 
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public List<ProbeDTO> getProbes() {
+		return probes;
+	}
 
 }
