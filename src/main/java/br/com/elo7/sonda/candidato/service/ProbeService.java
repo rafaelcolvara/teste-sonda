@@ -3,6 +3,7 @@ package br.com.elo7.sonda.candidato.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.elo7.sonda.candidato.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ public class ProbeService {
 	private Planets planets;
 	@Autowired
 	private Probes probes;
+	@Autowired
+	private Mapper mapper;
 	
 	public List<Probe> landProbes(InputDTO input) {
 		Planet planet = concertPlanet(input);
@@ -112,7 +115,7 @@ public class ProbeService {
 	private List<Probe> convertAndMoveProbes(InputDTO input, Planet planet) {
 		return input.getProbes()
 						.stream().map(probeDto -> {
-							Probe probe = convertProbe(probeDto, planet);
+							Probe probe = mapper.toProbe(probeDto, planet);
 							moveProbeWithAllCommands(probe, probeDto);
 							return probe;
 						}).collect(Collectors.toList());
@@ -124,14 +127,7 @@ public class ProbeService {
 		}
 	}
 	
-	private Probe convertProbe(ProbeDTO probeDto, Planet planet) {
-		Probe probe = new Probe();
-		probe.setPlanet(planet);
-		probe.setX(probeDto.getX());
-		probe.setY(probeDto.getY());
-		probe.setDirection(probeDto.getDirection());
-		return probe;
-	}
+
 	
 	private Planet concertPlanet(InputDTO input) {
 		Planet planet = new Planet();
