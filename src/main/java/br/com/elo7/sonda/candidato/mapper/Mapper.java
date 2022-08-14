@@ -19,7 +19,7 @@ public class Mapper {
         return probe;
     }
 
-    public Planet InputDTOToPlanet(InputDTO input) {
+    public Planet inputDTOToPlanet(InputDTO input) {
         Planet planet = new Planet();
         planet.setHeight(input.getHeight());
         planet.setWidth(input.getWidth());

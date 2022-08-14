@@ -27,7 +27,7 @@ public class ProbeService {
 	private Mapper mapper;
 	
 	public List<Probe> landProbes(InputDTO inputDTO) {
-		Planet planet = mapper.InputDTOToPlanet(inputDTO);
+		Planet planet = mapper.inputDTOToPlanet(inputDTO);
 		planets.save(planet);
 		
 		List<Probe> convertedProbes = convertAndMoveProbes(inputDTO, planet);
