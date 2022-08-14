@@ -7,16 +7,11 @@ public class InputDTO {
 	private int height;
 	private List<ProbeDTO> probes;
 
-	public int getWidth() {
-		return width;
+	public InputDTO(int width, int height, List<ProbeDTO> probes) {
+		this.height = height;
+		this.width = width;
+		this.probes = probes;
 	}
 
-	public int getHeight() {
-		return height;
-	}
-
-	public List<ProbeDTO> getProbes() {
-		return probes;
-	}
 
 }
