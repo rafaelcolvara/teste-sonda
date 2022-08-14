@@ -26,11 +26,11 @@ public class ProbeService {
 	@Autowired
 	private Mapper mapper;
 	
-	public List<Probe> landProbes(InputDTO input) {
-		Planet planet = mapper.InputDTOToPlanet(input);
+	public List<Probe> landProbes(InputDTO inputDTO) {
+		Planet planet = mapper.InputDTOToPlanet(inputDTO);
 		planets.save(planet);
 		
-		List<Probe> convertedProbes = convertAndMoveProbes(input, planet);
+		List<Probe> convertedProbes = convertAndMoveProbes(inputDTO, planet);
 		convertedProbes.forEach(probe -> probes.save(probe));
 		
 		return convertedProbes;
