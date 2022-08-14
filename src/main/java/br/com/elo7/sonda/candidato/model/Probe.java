@@ -4,7 +4,7 @@ public class Probe {
 	private int id;
 	private int x;
 	private int y;
-	private char direction;
+	private Direction direction;
 	private Planet planet;
 
 	public int getId() {
@@ -25,10 +25,10 @@ public class Probe {
 	public void setY(int y) {
 		this.y = y;
 	}
-	public char getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
-	public void setDirection(char direction) {
+	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
 	public Planet getPlanet() {

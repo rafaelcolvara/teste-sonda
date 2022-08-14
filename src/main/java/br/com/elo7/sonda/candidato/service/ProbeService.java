@@ -39,13 +39,13 @@ public class ProbeService {
 	@VisibleForTesting
 	void applyCommandToProbe(Probe probe, char command) {
 		switch (command) {
-			case Command.R:
-				turnProbeRight(probe);
+			case 'R':
+				probe.setDirection(probe.getDirection().turnRight());
 				break;
-			case Command.L:
-				turnProbeLeft(probe);
+			case 'L':
+				probe.setDirection(probe.getDirection().turnLeft());
 				break;
-			case Command.M:
+			case 'M':
 				moveProbeForward(probe);
 				break;
 		}
@@ -55,16 +55,16 @@ public class ProbeService {
 		int newX = probe.getX();
 		int newY = probe.getY();
 		switch (probe.getDirection()) {
-			case Direction.N:
+			case N:
 				newY++;
 				break;
-			case Direction.W:
+			case W:
 				newX--;
 				break;
-			case Direction.S:
+			case S:
 				newY--;
 				break;
-			case Direction.E:
+			case E:
 				newX++;
 				break;
 		}
@@ -72,46 +72,7 @@ public class ProbeService {
 		probe.setY(newY);
 	}
 
-	private void turnProbeLeft(Probe probe) {
-		char newDirection = Direction.N;
-		switch (probe.getDirection()) {
-			case Direction.N:
-				newDirection = Direction.W;
-				break;
-			case Direction.W:
-				newDirection = Direction.S;
-				break;
-			case Direction.S:
-				newDirection = Direction.E;
-				break;
-			case Direction.E:
-				newDirection = Direction.N;
-				break;
-		}
-		probe.setDirection(newDirection);
-	}
-	
-	private void turnProbeRight(Probe probe) {
-		char newDirection = Direction.N;
-		switch (probe.getDirection()) {
-			case Direction.N:
-				newDirection = Direction.E;
-				break;
-			case Direction.E:
-				newDirection = Direction.S;
-				break;
-			case Direction.S:
-				newDirection = Direction.W;
-				break;
-			case Direction.W:
-				newDirection = Direction.N;
-				break;
-		}
-		System.out.println(newDirection);
-		probe.setDirection(newDirection);
-		
-	}
-	
+
 	private List<Probe> convertAndMoveProbes(InputDTO input, Planet planet) {
 		return input.getProbes()
 						.stream().map(probeDto -> {
