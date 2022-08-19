@@ -27,13 +27,7 @@ public class ProbeService {
 	private Mapper mapper;
 	
 	public List<Probe> landProbes(InputDTO inputDTO) {
-		Planet planet = mapper.inputDTOToPlanet(inputDTO);
-		planets.save(planet);
-		
-		List<Probe> convertedProbes = convertAndMoveProbes(inputDTO, planet);
-		convertedProbes.forEach(probe -> probes.save(probe));
-		
-		return convertedProbes;
+		return probes.saveAllAndFlush(convertAndMoveProbes(inputDTO, planets.save(mapper.inputDTOToPlanet(inputDTO))));
 	}
 	
 	@VisibleForTesting
@@ -87,8 +81,6 @@ public class ProbeService {
 			applyCommandToProbe(probe, command);
 		}
 	}
-	
 
-	
 
 }

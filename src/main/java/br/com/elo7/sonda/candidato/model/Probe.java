@@ -1,18 +1,27 @@
 package br.com.elo7.sonda.candidato.model;
 
+
+import javax.persistence.*;
+
+@Table
+@Entity
 public class Probe {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@Column
 	private int x;
+	@Column
 	private int y;
+	@Column
+	@Enumerated(EnumType.STRING)
 	private Direction direction;
+
+	@ManyToOne(fetch = FetchType.EAGER )
+	@JoinColumn(name = "id_planeta")
 	private Planet planet;
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public int getX() {
 		return x;
 	}

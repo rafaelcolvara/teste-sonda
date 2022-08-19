@@ -21,6 +21,6 @@ public class PlanetAndProbeController {
 
 	@PostMapping
     public ResponseEntity<List<Probe>> register(@RequestBody InputDTO inputDto) {
-		return ResponseEntity.ok(probeService.landProbes(inputDto));        
+		return ResponseEntity.ok(probeService.landProbes(inputDto));
     }
 }

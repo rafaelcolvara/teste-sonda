@@ -6,6 +6,8 @@ import br.com.elo7.sonda.candidato.model.Planet;
 import br.com.elo7.sonda.candidato.model.Probe;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Mapper {
 
@@ -25,5 +27,6 @@ public class Mapper {
         planet.setWidth(input.getWidth());
         return planet;
     }
+
 
 }
