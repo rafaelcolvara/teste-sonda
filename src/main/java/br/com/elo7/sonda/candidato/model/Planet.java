@@ -3,7 +3,7 @@ package br.com.elo7.sonda.candidato.model;
 import javax.persistence.*;
 import java.util.List;
 
-@Table
+
 @Entity
 public class Planet {
 	@Id
@@ -16,8 +16,16 @@ public class Planet {
 	@Column
 	private int height;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "planet")
-	private List<Probe> probeList;
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	@OneToMany(mappedBy = "planet", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	private List<Probe> probeList ;
 
 	@Override
 	public int hashCode() {
@@ -38,4 +46,5 @@ public class Planet {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+
 }

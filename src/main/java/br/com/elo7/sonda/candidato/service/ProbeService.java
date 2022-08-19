@@ -1,21 +1,18 @@
 package br.com.elo7.sonda.candidato.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import br.com.elo7.sonda.candidato.mapper.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.google.common.annotations.VisibleForTesting;
 import br.com.elo7.sonda.candidato.dto.InputDTO;
 import br.com.elo7.sonda.candidato.dto.ProbeDTO;
-import br.com.elo7.sonda.candidato.model.Command;
-import br.com.elo7.sonda.candidato.model.Direction;
+import br.com.elo7.sonda.candidato.mapper.Mapper;
 import br.com.elo7.sonda.candidato.model.Planet;
 import br.com.elo7.sonda.candidato.model.Probe;
 import br.com.elo7.sonda.candidato.persistence.Planets;
 import br.com.elo7.sonda.candidato.persistence.Probes;
+import com.google.common.annotations.VisibleForTesting;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProbeService {
@@ -27,7 +24,8 @@ public class ProbeService {
 	private Mapper mapper;
 	
 	public List<Probe> landProbes(InputDTO inputDTO) {
-		return probes.saveAllAndFlush(convertAndMoveProbes(inputDTO, planets.save(mapper.inputDTOToPlanet(inputDTO))));
+
+		return probes.saveAll(convertAndMoveProbes(inputDTO, planets.save(mapper.inputDTOToPlanet(inputDTO))));
 	}
 	
 	@VisibleForTesting

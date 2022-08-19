@@ -3,7 +3,7 @@ package br.com.elo7.sonda.candidato.model;
 
 import javax.persistence.*;
 
-@Table
+
 @Entity
 public class Probe {
 
@@ -20,7 +20,7 @@ public class Probe {
 
 	@ManyToOne(fetch = FetchType.EAGER )
 	@JoinColumn(name = "id_planeta")
-	private Planet planet;
+	private Planet planet = new Planet();
 
 	public int getX() {
 		return x;

@@ -1,7 +1,8 @@
 package br.com.elo7.sonda.candidato.controller;
 
-import java.util.List;
-
+import br.com.elo7.sonda.candidato.dto.InputDTO;
+import br.com.elo7.sonda.candidato.model.Probe;
+import br.com.elo7.sonda.candidato.service.ProbeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,9 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.elo7.sonda.candidato.dto.InputDTO;
-import br.com.elo7.sonda.candidato.model.Probe;
-import br.com.elo7.sonda.candidato.service.ProbeService;
+import java.util.List;
 
 @Controller
 @RequestMapping("/planet-with-probes")
