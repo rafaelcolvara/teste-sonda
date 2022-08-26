@@ -3,8 +3,8 @@ package br.com.elo7.sonda.candidato.dto;
 import java.util.List;
 
 public class InputDTO {
-	private int width; 
-	private int height;
+	private int width; //x
+	private int height; //y
 	private List<ProbeDTO> probes;
 
 	public InputDTO(int width, int height, List<ProbeDTO> probes) {

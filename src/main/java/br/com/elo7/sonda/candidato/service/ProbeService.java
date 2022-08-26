@@ -60,15 +60,22 @@ public class ProbeService {
 				newX++;
 				break;
 		}
-		probe.setX(newX);
-		probe.setY(newY);
+
+		if (validMoveProbe(probe, newX, newY)){
+			probe.setX(newX);
+			probe.setY(newY);
+		}
 	}
 
+	private Boolean validMoveProbe(Probe probe, int newX, int newY) {
+		return !(((probe.getPlanet().getHeight() <= newX) || (probe.getPlanet().getWidth() <= newY)) || (newX < 0 || newY < 0));
+	}
 
 	private List<Probe> convertAndMoveProbes(InputDTO input, Planet planet) {
 		return input.getProbes()
 						.stream().map(probeDto -> {
 							Probe probe = mapper.toProbe(probeDto, planet);
+
 							moveProbeWithAllCommands(probe, probeDto);
 							return probe;
 						}).collect(Collectors.toList());
