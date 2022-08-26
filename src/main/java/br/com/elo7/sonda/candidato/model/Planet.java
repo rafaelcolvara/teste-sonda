@@ -47,4 +47,7 @@ public class Planet {
 		this.height = height;
 	}
 
+	public List<Probe> getProbeList() {
+		return probeList;
+	}
 }

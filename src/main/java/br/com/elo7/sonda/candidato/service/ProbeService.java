@@ -71,6 +71,10 @@ public class ProbeService {
 		return !(((probe.getPlanet().getHeight() <= newX) || (probe.getPlanet().getWidth() <= newY)) || (newX < 0 || newY < 0));
 	}
 
+	private Boolean checkColisionProbes(Probe probe){
+
+		return false;
+	}
 	private List<Probe> convertAndMoveProbes(InputDTO input, Planet planet) {
 		return input.getProbes()
 						.stream().map(probeDto -> {
@@ -86,6 +90,7 @@ public class ProbeService {
 			applyCommandToProbe(probe, command);
 		}
 	}
+
 
 
 }
