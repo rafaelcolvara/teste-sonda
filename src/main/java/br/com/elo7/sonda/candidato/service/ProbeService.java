@@ -25,9 +25,17 @@ public class ProbeService {
 
 	@Autowired
 	private ProbeValidation probeValidation;
+
+	public List<Probe> saveProbes(List<ProbeDTO> probeDTOList ) {
+
+		List<Probe> probeList = mapper.toListProbe(probeDTOList );
+
+		return probes.saveAll(probeList);
+	}
+
 	public List<Probe> landProbes(InputDTO inputDTO) {
 
-		return probes.saveAll(convertAndMoveProbes(inputDTO, planets.save(mapper.inputDTOToPlanet(inputDTO))));
+		return MoveProbes(inputDTO);
 	}
 	
 	@VisibleForTesting
@@ -67,26 +75,29 @@ public class ProbeService {
 			probe.setX(newX);
 			probe.setY(newY);
 		}
-
 	}
 
 
-	private List<Probe> convertAndMoveProbes(InputDTO input, Planet planet) {
-		return input.getProbes()
-						.stream().map(probeDto -> {
-							Probe probe = mapper.toProbe(probeDto, planet);
-
-							moveProbeWithAllCommands(probe, probeDto);
+	private List<Probe> MoveProbes(InputDTO input) {
+		return input.getProbesWithCommands()
+				.entrySet()
+				.stream()
+				.map(probeDto -> {
+							Probe probe = probes.getById(probeDto.getKey());
+							moveProbeWithAllCommands(probe, probeDto.getValue());
 							return probe;
 						}).collect(Collectors.toList());
 	}
 
-	private void moveProbeWithAllCommands(Probe probe, ProbeDTO probeDTO) {
-		for (char command : probeDTO.getCommands().toCharArray()) {
+	private void moveProbeWithAllCommands(Probe probe, String commandFromProbe) {
+		for (char command : commandFromProbe.toCharArray()) {
 			applyCommandToProbe(probe, command);
 		}
 	}
 
+	public List<Probe> getAllProbes(){
+		return probes.findAll();
+	}
 
 
 }
