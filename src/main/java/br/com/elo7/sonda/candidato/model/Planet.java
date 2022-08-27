@@ -1,5 +1,7 @@
 package br.com.elo7.sonda.candidato.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class Planet {
 	}
 
 	@OneToMany(mappedBy = "planet", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	@JsonIgnoreProperties("planet")
 	private List<Probe> probeList ;
 
 	@Override
@@ -49,5 +52,9 @@ public class Planet {
 
 	public List<Probe> getProbeList() {
 		return probeList;
+	}
+
+	public void setProbeList(List<Probe> probeList) {
+		this.probeList = probeList;
 	}
 }
