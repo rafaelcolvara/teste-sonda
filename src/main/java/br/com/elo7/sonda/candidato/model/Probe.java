@@ -1,6 +1,8 @@
 package br.com.elo7.sonda.candidato.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 
@@ -20,7 +22,15 @@ public class Probe {
 
 	@ManyToOne(fetch = FetchType.EAGER )
 	@JoinColumn(name = "id_planeta")
+	@JsonIgnoreProperties("probeList")
 	private Planet planet = new Planet();
+
+	public Probe(int x, int y, Direction direction, Planet planet) {
+		this.x = x;
+		this.y = y;
+		this.direction = direction;
+		this.planet = planet;
+	}
 
 	public int getX() {
 		return x;
