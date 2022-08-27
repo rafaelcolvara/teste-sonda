@@ -16,10 +16,10 @@ public class ProbeValidation {
 
         List<Probe> probeList = probe.getPlanet().getProbeList()
                 .stream().filter(
-                        probe1 -> probe1.equals(probe)
+                        probe1 -> !probe1.equals(probe)
                 ).collect(Collectors.toList());
 
-
+        probeList.stream().forEach(x -> System.out.println(x.getY()));
 
         return false;
     }
