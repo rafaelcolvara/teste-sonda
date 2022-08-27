@@ -1,28 +1,15 @@
 package br.com.elo7.sonda.candidato.dto;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class InputDTO {
-	private int width; //x
-	private int height; //y
-	private List<ProbeDTO> probes;
 
-	public InputDTO(int width, int height, List<ProbeDTO> probes) {
-		this.height = height;
-		this.width = width;
-		this.probes = probes;
+	private int idPlanet; //x
+
+	private HashMap<Integer, String> probesWithCommands;
+
+	public HashMap<Integer, String> getProbesWithCommands() {
+		return probesWithCommands;
 	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public List<ProbeDTO> getProbes() {
-		return probes;
-	}
-
 }
