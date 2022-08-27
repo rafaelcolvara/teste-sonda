@@ -1,7 +1,6 @@
 package br.com.elo7.sonda.candidato.controller;
 
 import br.com.elo7.sonda.candidato.dto.InputDTO;
-import br.com.elo7.sonda.candidato.dto.PlanetDTO;
 import br.com.elo7.sonda.candidato.model.Probe;
 import br.com.elo7.sonda.candidato.service.ProbeService;
 import org.springframework.beans.factory.annotation.Autowired;
