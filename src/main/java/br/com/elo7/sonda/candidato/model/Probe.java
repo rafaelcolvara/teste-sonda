@@ -2,6 +2,7 @@ package br.com.elo7.sonda.candidato.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ public class Probe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NotNull
 	private int id;
 	@Column
 	private int x;
@@ -22,17 +24,26 @@ public class Probe {
 
 	@ManyToOne(fetch = FetchType.EAGER )
 	@JoinColumn(name = "id_planeta")
-	@JsonIgnoreProperties("probeList")
+	//@JsonIgnoreProperties("probeList")
 	private Planet planet;
 
 	public Probe() {
 	}
 
+	public Probe(int x, int y, Direction direction){
+		this.x = x;
+		this.y = y;
+		this.direction = direction;
+	}
 	public Probe(int x, int y, Direction direction, Planet planet) {
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
 		this.planet = planet;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public int getX() {
