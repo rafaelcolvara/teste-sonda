@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class ProbeServiceTest {
-	
+
 	@Autowired
 	private ProbeService subject;
 
-	Probe probe = new Probe(0,0,Direction.S,new Planet());
+	Planet planet = new Planet(10, 10);
+	Probe probe = new Probe(0,0,Direction.S, planet);
 	@Test
 	public void should_change_probe_direction_from_N_To_W_when_receive_the_command_L() {
 
