@@ -22,7 +22,9 @@ public class ProbeService {
 	private Probes probes;
 	@Autowired
 	private Mapper mapper;
-	
+
+	@Autowired
+	private ProbeValidation probeValidation;
 	public List<Probe> landProbes(InputDTO inputDTO) {
 
 		return probes.saveAll(convertAndMoveProbes(inputDTO, planets.save(mapper.inputDTOToPlanet(inputDTO))));
@@ -61,20 +63,14 @@ public class ProbeService {
 				break;
 		}
 
-		if (validMoveProbe(probe, newX, newY)){
+		if (probeValidation.validMoveProbe(probe, newX, newY) && probeValidation.checkColisionProbes(probe)){
 			probe.setX(newX);
 			probe.setY(newY);
 		}
+
 	}
 
-	private Boolean validMoveProbe(Probe probe, int newX, int newY) {
-		return !(((probe.getPlanet().getHeight() <= newX) || (probe.getPlanet().getWidth() <= newY)) || (newX < 0 || newY < 0));
-	}
 
-	private Boolean checkColisionProbes(Probe probe){
-
-		return false;
-	}
 	private List<Probe> convertAndMoveProbes(InputDTO input, Planet planet) {
 		return input.getProbes()
 						.stream().map(probeDto -> {
