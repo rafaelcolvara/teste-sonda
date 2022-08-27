@@ -23,7 +23,10 @@ public class Probe {
 	@ManyToOne(fetch = FetchType.EAGER )
 	@JoinColumn(name = "id_planeta")
 	@JsonIgnoreProperties("probeList")
-	private Planet planet = new Planet();
+	private Planet planet;
+
+	public Probe() {
+	}
 
 	public Probe(int x, int y, Direction direction, Planet planet) {
 		this.x = x;
