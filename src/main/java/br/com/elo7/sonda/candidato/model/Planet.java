@@ -1,16 +1,20 @@
 package br.com.elo7.sonda.candidato.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Planet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_planeta")
+	@NotNull
 	private int id;
 
 	@Column
@@ -31,7 +35,7 @@ public class Planet {
 		this.height = height;
 	}
 
-	@OneToMany(mappedBy = "planet", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	@OneToMany(mappedBy = "planet", fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JsonIgnoreProperties("planet")
 	private List<Probe> probeList ;
 
@@ -46,6 +50,19 @@ public class Planet {
 			return ((Planet) obj).id == this.id;
 		}
 		return false;
+	}
+
+	public Planet(int id, int width, int height, List<Probe> probeList) {
+		this.id = id;
+		this.width = width;
+		this.height = height;
+		this.probeList = probeList;
+	}
+
+	public Planet() {};
+
+	public int getId() {
+		return id;
 	}
 
 	public void setWidth(int width) {
