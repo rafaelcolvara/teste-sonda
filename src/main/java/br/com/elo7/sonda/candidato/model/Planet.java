@@ -26,6 +26,11 @@ public class Planet {
 		return height;
 	}
 
+	public Planet(int width, int height ) {
+		this.width = width;
+		this.height = height;
+	}
+
 	@OneToMany(mappedBy = "planet", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	@JsonIgnoreProperties("planet")
 	private List<Probe> probeList ;
