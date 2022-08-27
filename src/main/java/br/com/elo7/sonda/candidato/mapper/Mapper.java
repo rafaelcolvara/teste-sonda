@@ -14,26 +14,18 @@ import java.util.stream.Collectors;
 @Component
 public class Mapper {
 
-    public Probe toProbe(ProbeDTO probeDto, Planet planet) {
-
-        Probe probe = new Probe(probeDto.getX(), probeDto.getY(), probeDto.getDirection(), planet);
-        return probe;
-    }
-
-    public Planet inputDTOToPlanet(InputDTO input) {
-        Planet planet = new Planet(input.getWidth(), input.getHeight() );
-        planet.setProbeList(toListProbes(input.getProbes(),planet));
-        return planet;
-    }
-
-    private List<Probe> toListProbes(List<ProbeDTO> probeDTOList, Planet planet) {
-        return  probeDTOList.stream().map(x -> new Probe(x.getX(), x.getY(), x.getDirection(), planet)).collect(Collectors.toList());
-
-    }
 
     public Planet toPlanet(PlanetDTO planetDTO ) {
         return new Planet(planetDTO.getWidth(), planetDTO.getHeight());
+    }
+
+    public List<Probe> toListProbe(List<ProbeDTO> probeDTOList) {
+
+        return probeDTOList.stream().map(x-> {
+             return new Probe(x.getX(), x.getY(), x.getDirection());
+        }).collect(Collectors.toList());
 
     }
+
 
 }
