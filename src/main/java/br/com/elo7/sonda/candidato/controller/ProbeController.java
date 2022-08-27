@@ -1,6 +1,7 @@
 package br.com.elo7.sonda.candidato.controller;
 
 import br.com.elo7.sonda.candidato.dto.InputDTO;
+import br.com.elo7.sonda.candidato.dto.PlanetDTO;
 import br.com.elo7.sonda.candidato.model.Probe;
 import br.com.elo7.sonda.candidato.service.ProbeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/planet-with-probes")
-public class PlanetAndProbeController {
+@RequestMapping("/probes")
+public class ProbeController {
 	@Autowired
 	private ProbeService probeService;
 
@@ -22,4 +23,5 @@ public class PlanetAndProbeController {
     public ResponseEntity<List<Probe>> register(@RequestBody InputDTO inputDto) {
 		return ResponseEntity.ok(probeService.landProbes(inputDto));
     }
+
 }
