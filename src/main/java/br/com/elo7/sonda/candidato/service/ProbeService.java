@@ -11,7 +11,9 @@ import com.google.common.annotations.VisibleForTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,16 +79,15 @@ public class ProbeService {
 		}
 	}
 
-
 	private List<Probe> MoveProbes(InputDTO input) {
-		return input.getProbesWithCommands()
+		return probes.saveAll(input.getProbesWithCommands()
 				.entrySet()
 				.stream()
 				.map(probeDto -> {
-							Probe probe = probes.getById(probeDto.getKey());
+							Probe probe = probes.findById(probeDto.getKey()).orElseThrow(()-> new EntityNotFoundException("Probe id:" + probeDto.getKey() + " not founded"));
 							moveProbeWithAllCommands(probe, probeDto.getValue());
 							return probe;
-						}).collect(Collectors.toList());
+						}).collect(Collectors.toList()));
 	}
 
 	private void moveProbeWithAllCommands(Probe probe, String commandFromProbe) {
